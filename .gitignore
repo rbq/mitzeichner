@@ -1,2 +1,8 @@
+.DS_Store
+data/*.csv
+data/*.ods
 data/*.sqlite
+data/*.xls
+data/*.xml
+data/graph/*
 log/*

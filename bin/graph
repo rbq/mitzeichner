@@ -1,0 +1,56 @@
+#!/usr/bin/env php
+<?php
+
+### Configuration
+$database   = dirname(__FILE__) . '/../data/Mitzeichner.sqlite';
+$output_dir = dirname(__FILE__) . '/../data/graph';
+
+### Dependencies
+require_once 'ezc/Base/ezc_bootstrap.php';
+require_once dirname(__FILE__) . '/../lib/MitzeichnerPalette.php';
+
+### Database
+if (! file_exists($database))
+{
+  die ("\nSQLite DB found. Try:\n$ cat data/Mitzeichner.sql | sqlite3 data/Mitzeichner.sqlite\n\n");
+}
+$db = new SQLite3($database);
+
+### Graph boundaries (round to midnight)
+$min_date = $db->querySingle('SELECT min(time) FROM signers');
+$min_date = mktime(
+  0, 0, 0, # H:i:s
+  date('n', $min_date), date('j', $min_date), date('Y', $min_date)
+);
+$max_date = $db->querySingle('SELECT max(time) FROM signers');
+$max_date = mktime(
+  0, 0, 0, # H:i:s
+  date('n', $max_date), date('j', $max_date) + 1, date('Y', $max_date)
+);
+
+### Create/configure ezcGraphLineChart
+$graph = new ezcGraphLineChart();
+$graph->title   = false;
+$graph->legend  = false;
+$graph->palette = new MitzeichnerPalette();
+$graph->options->font->maxFontSize = 11;
+
+$graph->xAxis = new ezcGraphChartElementDateAxis();
+$graph->xAxis->dateFormat = "d.m.Y";
+$graph->xAxis->startDate  = $min_date;
+$graph->xAxis->endDate    = $max_date;
+
+$graph->xAxis->axisLabelRenderer = new ezcGraphAxisExactLabelRenderer();
+$graph->yAxis->axisLabelRenderer = new ezcGraphAxisCenteredLabelRenderer();
+
+### Add data
+$data = array();
+$results = $db->query('SELECT time, count FROM signers');
+while ($row = $results->fetchArray(SQLITE3_ASSOC))
+{
+  $data[$row['time']] = $row['count'];
+}
+$graph->data['Mitzeichner'] = new ezcGraphArrayDataSet($data);
+
+### Output
+$graph->render(800, 400, $output_dir.'/Mitzeichner.svg');
