@@ -8,7 +8,9 @@ Dies sind die erhobenen Daten als SQLite-Dump.
 
 ## bin/graph ##
 
-Das Skript generiert ein einfaches Diagramm des Verlaufs.
+Das Skript generiert ein einfaches Diagramm des Verlaufs:
+
+![Verlauf](http://cloud.github.com/downloads/rbq/mitzeichner/Mitzeichner.png "Verlauf")
 
 Abhängigkeiten:
 
