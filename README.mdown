@@ -2,10 +2,6 @@
 
 Der Twitter-Bot [@mitzeichner](http://twitter.com/Mitzeichner) verfolgt die Anzahl der Unterstützer der [Petition gegen Internetzensur](https://epetitionen.bundestag.de/index.php?action=petition%3bsa=details%3bpetition=3860).
 
-## data/Mitzeichner.sql ##
-
-Dies sind die erhobenen Daten als SQLite-Dump.
-
 ## bin/graph ##
 
 Das Skript generiert ein einfaches Diagramm des Verlaufs:
@@ -17,3 +13,7 @@ Abhängigkeiten:
 * PHP 5.2
 * SQLite3 (PHP-Extension)
 * ezComponents (PEAR-Paket)
+
+## data/Mitzeichner.sql ##
+
+Dies sind die erhobenen Daten als SQLite-Dump.
