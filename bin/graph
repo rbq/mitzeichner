@@ -25,7 +25,8 @@ $min_date = mktime(
 $max_date = $db->querySingle('SELECT max(time) FROM signers');
 $max_date = mktime(
   0, 0, 0, # H:i:s
-  date('n', $max_date), date('j', $max_date) + 1, date('Y', $max_date)
+  //date('n', $max_date), date('j', $max_date) + 1, date('Y', $max_date) # OR
+  6, 16, 2009
 );
 
 ### Create/configure ezcGraphLineChart
@@ -53,4 +54,4 @@ while ($row = $results->fetchArray(SQLITE3_ASSOC))
 $graph->data['Mitzeichner'] = new ezcGraphArrayDataSet($data);
 
 ### Output
-$graph->render(800, 400, $output_dir.'/Mitzeichner.svg');
+$graph->render(900, 450, $output_dir.'/Mitzeichner.svg');
