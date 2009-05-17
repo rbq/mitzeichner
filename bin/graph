@@ -35,6 +35,8 @@ $graph->title   = false;
 $graph->legend  = false;
 $graph->palette = new MitzeichnerPalette();
 $graph->options->font->maxFontSize = 11;
+$graph->options->highlightSize = 8;
+$graph->options->fillLines = 210;
 
 $graph->xAxis = new ezcGraphChartElementDateAxis();
 $graph->xAxis->dateFormat = "d.m.Y";
@@ -45,13 +47,34 @@ $graph->xAxis->axisLabelRenderer = new ezcGraphAxisExactLabelRenderer();
 $graph->yAxis->axisLabelRenderer = new ezcGraphAxisCenteredLabelRenderer();
 
 ### Add data
-$data = array();
+$data       = array();
+$highlights = array();
+$count      = 0;
+
 $results = $db->query('SELECT time, count FROM signers');
 while ($row = $results->fetchArray(SQLITE3_ASSOC))
 {
   $data[$row['time']] = $row['count'];
+  $day = date('Y-m-d', $row['time']);
+  if ($day != $last_day)
+  {
+    if ($count > 0 && $count < 12)
+    {
+      $highlights[] = $row['time'];
+    }
+    $last_day = $day;
+    $count++;
+  }
 }
 $graph->data['Mitzeichner'] = new ezcGraphArrayDataSet($data);
+
+### Highlights
+/*
+foreach ($highlights as $timestamp)
+{
+  $graph->data['Mitzeichner']->highlight[$timestamp] = true;
+}
+*/
 
 ### Output
 $graph->render(900, 450, $output_dir.'/Mitzeichner.svg');
