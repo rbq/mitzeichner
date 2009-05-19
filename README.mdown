@@ -1,12 +1,14 @@
 # Mitzeichner #
 
-Der Twitter-Bot [@mitzeichner](http://twitter.com/Mitzeichner) verfolgt die Anzahl der Unterstützer der [Petition gegen Internetzensur](https://epetitionen.bundestag.de/index.php?action=petition%3bsa=details%3bpetition=3860).
+Der Twitter-Bot [@mitzeichner](http://twitter.com/Mitzeichner) verfolgt die Anzahl der Unterstützer der [Petition gegen Internetzensur](https://epetitionen.bundestag.de/index.php?action=petition%3bsa=details%3bpetition=3860). Da alte Zahlen in Zukunft aus der Timeline verschwinden sollen, finden sich hier die Daten zur Auswertung.
 
 ## bin/graph ##
 
-Das Skript generiert ein einfaches Diagramm des Verlaufs:
-
 ![Verlauf](http://cloud.github.com/downloads/rbq/mitzeichner/Mitzeichner.png "Verlauf")
+
+Das Skript generiert ein einfaches Diagramm des Verlaufs im SVG-Format:
+
+<pre>$ bin/graph</pre>
 
 Abhängigkeiten:
 
@@ -16,4 +18,6 @@ Abhängigkeiten:
 
 ## data/Mitzeichner.sql ##
 
-Dies sind die erhobenen Daten als SQLite-Dump.
+Dies sind die erhobenen Daten als SQLite-Dump. Eine Datenbank erhält man durch:
+
+<pre>$ cat data/Mitzeichner.sql | sqlite3 data/Mitzeichner.sqlite</pre>
