@@ -1,6 +1,6 @@
 # Mitzeichner #
 
-Der Twitter-Bot [@mitzeichner](http://twitter.com/Mitzeichner) verfolgt die Anzahl der Unterstützer der [Petition gegen Internetzensur](https://epetitionen.bundestag.de/index.php?action=petition%3bsa=details%3bpetition=3860). Da alte Zahlen in Zukunft aus der Timeline verschwinden sollen, finden sich hier die Daten zur Auswertung.
+Der Twitter-Bot [@mitzeichner](http://twitter.com/Mitzeichner) verfolgt die Anzahl der Unterstützer der [Petition gegen Internetzensur](https://epetitionen.bundestag.de/index.php?action=petition%3bsa=details%3bpetition=3860). Hier sind die nicht mehr in der Timeline verfügbaren Daten zur Auswertung erhältlich.
 
 ## bin/graph ##
 
