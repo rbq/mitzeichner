@@ -26,7 +26,7 @@ $max_date = $db->querySingle('SELECT max(time) FROM signers');
 $max_date = mktime(
   0, 0, 0, # H:i:s
   //date('n', $max_date), date('j', $max_date) + 1, date('Y', $max_date) # OR
-  6, 16, 2009
+  6, 17, 2009
 );
 
 ### Create/configure ezcGraphLineChart
